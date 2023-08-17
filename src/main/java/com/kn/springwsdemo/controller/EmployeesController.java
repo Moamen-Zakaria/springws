@@ -9,8 +9,6 @@ import org.springframework.ws.server.endpoint.annotation.PayloadRoot;
 import org.springframework.ws.server.endpoint.annotation.RequestPayload;
 import org.springframework.ws.server.endpoint.annotation.ResponsePayload;
 
-import javax.xml.bind.JAXBElement;
-import javax.xml.namespace.QName;
 import java.util.Arrays;
 import java.util.UUID;
 
@@ -21,14 +19,14 @@ public class EmployeesController {
 
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "getAllEmployeesRequest")
     @ResponsePayload
-    public JAXBElement<GetEmployeeResponse> getAllEmployees(@RequestPayload GetAllEmployeesRequest getAllEmployeesRequest) {
+    public GetEmployeeResponse getAllEmployees(@RequestPayload GetAllEmployeesRequest getAllEmployeesRequest) {
 
-        return new JAXBElement(new QName("http://www.kn.com/springsoap","getEmployeeResponse"),GetEmployeeResponse.class , GetEmployeeResponse.builder()
-                .element(Arrays.asList(new Employee(UUID.randomUUID().toString(),
+        return GetEmployeeResponse.builder()
+                .listOfEmployees(Arrays.asList(new Employee(UUID.randomUUID().toString(),
                         "ahmed",
                         "mohamed",
                         "ddd@ddd.com",
                         new Department(5, "dddd"))))
-                .build()) ;
+                .build();
     }
 }
