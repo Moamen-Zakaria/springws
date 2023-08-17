@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:sch="http://www.kn.com/springsoap"
+                  xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://www.kn.com/springsoap"
+                  targetNamespace="http://www.kn.com/springsoap">
+    <wsdl:types>
+        <xs:schema xmlns="http://www.kn.com/springsoap" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                   elementFormDefault="qualified" targetNamespace="http://www.kn.com/springsoap">
+            <xs:complexType name="Department">
+                <xs:sequence>
+                    <xs:element name="departmentId" type="xs:int"/>
+                    <xs:element name="departmentName" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="Employee">
+                <xs:sequence>
+                    <xs:element name="employeeId" type="UUIDType"/>
+                    <xs:element name="firstName" type="xs:string"/>
+                    <xs:element name="lastName" type="xs:string"/>
+                    <xs:element name="email" type="xs:string"/>
+                    <xs:element name="department" type="Department"/>
+                </xs:sequence>
+            </xs:complexType>
+
+            <xs:simpleType name="UUIDType">
+                <xs:restriction base="xs:string">
+                    <xs:pattern value="[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}">
+                    </xs:pattern>
+                </xs:restriction>
+            </xs:simpleType>
+            <xs:complexType name="getEmployeeResponse">
+                <xs:sequence maxOccurs="unbounded">
+                    <xs:element name="element" type="Employee"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:element name="getAllEmployeesRequest">
+                <xs:complexType>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="getEmployeeResponse" type="getEmployeeResponse"/>
+        </xs:schema>
+    </wsdl:types>
+
+    <wsdl:message name="getAllEmployeesRequest">
+        <wsdl:part element="tns:getAllEmployeesRequest" name="getAllEmployeesRequest"/>
+    </wsdl:message>
+
+    <wsdl:message name="getEmployeeResponse">
+        <wsdl:part element="tns:getEmployeeResponse" name="getEmployeeResponse"/>
+    </wsdl:message>
+
+    <wsdl:portType name="EmployeesPort">
+        <wsdl:operation name="getAllEmployees">
+            <wsdl:input message="tns:getAllEmployeesRequest" name="getAllEmployeesRequest"/>
+            <wsdl:output message="tns:getEmployeeResponse" name="getEmployeeResponse"/>
+        </wsdl:operation>
+    </wsdl:portType>
+
+    <wsdl:binding name="EmployeesPortSoap11" type="tns:EmployeesPort">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="getAllEmployees">
+            <soap:operation soapAction=""/>
+            <wsdl:input name="getAllEmployeesRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+        </wsdl:operation>
+    </wsdl:binding>
+
+    <wsdl:service name="EmployeesPortService">
+        <wsdl:port binding="tns:EmployeesPortSoap11" name="EmployeesPortSoap11">
+            <soap:address location="http://localhost:8080/ws"/>
+        </wsdl:port>
+    </wsdl:service>
+
+</wsdl:definitions>
