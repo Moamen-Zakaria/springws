@@ -40,26 +40,6 @@ public class GetEmployeeResponse {
     @XmlElement(namespace = "http://www.kn.com/springsoap", required = true)
     protected List<Employee> listOfEmployees;
 
-    /**
-     * Gets the value of the listOfEmployees property.
-     *
-     * <p>
-     * This accessor method returns a reference to the live list,
-     * not a snapshot. Therefore any modification you make to the
-     * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the listOfEmployees property.
-     *
-     * <p>
-     * For example, to add a new item, do as follows:
-     * <pre>
-     *    getListOfEmployees().add(newItem);
-     * </pre>
-     *
-     *
-     * <p>
-     * Objects of the following type(s) are allowed in the list
-     * {@link Employee }
-     */
     public List<Employee> getListOfEmployees() {
         if (listOfEmployees == null) {
             listOfEmployees = new ArrayList<Employee>();
