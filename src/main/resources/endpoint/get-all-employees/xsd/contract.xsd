@@ -1,44 +1,48 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
-           xmlns="http://www.kn.com/springsoap"
-           targetNamespace="http://www.kn.com/springsoap"
-           elementFormDefault="qualified">
-
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<xs:schema xmlns:ll="http://www.kn.com/springsoap" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           elementFormDefault="qualified" targetNamespace="http://www.kn.com/springsoap">
     <xs:complexType name="Department">
         <xs:sequence>
             <xs:element name="departmentId" type="xs:int"/>
             <xs:element name="departmentName" type="xs:string"/>
         </xs:sequence>
     </xs:complexType>
-
     <xs:complexType name="Employee">
         <xs:sequence>
-            <xs:element name="employeeId" type="UUIDType"/>
+            <xs:element name="employeeId" type="ll:UUIDType"/>
             <xs:element name="firstName" type="xs:string"/>
             <xs:element name="lastName" type="xs:string"/>
             <xs:element name="email" type="xs:string"/>
-            <xs:element name="department" type="Department"/>
+            <xs:element name="departments">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="department" type="ll:Department" minOccurs="0" maxOccurs="unbounded"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
         </xs:sequence>
-    </xs:complexType>
-
-    <xs:complexType name="Void">
     </xs:complexType>
 
     <xs:simpleType name="UUIDType">
         <xs:restriction base="xs:string">
-            <xs:pattern
-                    value="[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}">
+            <xs:pattern value="[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}">
             </xs:pattern>
         </xs:restriction>
     </xs:simpleType>
-
-    <xs:complexType name="GetEmployeeResponse">
-        <xs:sequence maxOccurs="unbounded">
-            <xs:element name="element" type="Employee"/>
-        </xs:sequence>
-    </xs:complexType>
-
-    <xs:element name="getAllEmployeeRequest" type="Void"/>
-    <xs:element name="getEmployeeResponse" type="GetEmployeeResponse"/>
-
+    <!--            <xs:complexType name="getEmployeeResponse">-->
+    <!--                <xs:sequence maxOccurs="unbounded">-->
+    <!--                    <xs:element name="element" type="ll:Employee"/>-->
+    <!--                </xs:sequence>-->
+    <!--            </xs:complexType>-->
+    <xs:element name="getAllEmployeesRequest">
+        <xs:complexType>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="getEmployeeResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="listOfEmployees" type="ll:Employee" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
 </xs:schema>
