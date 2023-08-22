@@ -15,19 +15,19 @@ import javax.xml.bind.annotation.XmlType;
 
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "Department", namespace = "http://www.kn.com/springsoap", propOrder = {
-        "departmentId",
+        "id",
         "departmentName"
 })
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity
+@Entity(name = "department")
 public class Department {
 
     @XmlElement(namespace = "http://www.kn.com/springsoap")
     @Id
-    protected Integer departmentId;
+    protected Integer id;
     @XmlElement(namespace = "http://www.kn.com/springsoap", required = true)
     protected String departmentName;
 

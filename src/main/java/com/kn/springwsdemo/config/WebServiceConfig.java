@@ -11,7 +11,6 @@ import org.springframework.ws.config.annotation.WsConfigurerAdapter;
 import org.springframework.ws.server.EndpointInterceptor;
 import org.springframework.ws.soap.server.endpoint.interceptor.PayloadRootSmartSoapEndpointInterceptor;
 import org.springframework.ws.transport.http.MessageDispatcherServlet;
-import org.springframework.ws.wsdl.wsdl11.DefaultWsdl11Definition;
 import org.springframework.ws.wsdl.wsdl11.SimpleWsdl11Definition;
 import org.springframework.xml.xsd.SimpleXsdSchema;
 import org.springframework.xml.xsd.XsdSchema;
@@ -50,16 +49,6 @@ public class WebServiceConfig extends WsConfigurerAdapter {
         wsdl11Definition.setWsdl(new ClassPathResource("endpoint/get-all-employees/wsdl/contract.wsdl"));
         return wsdl11Definition;
     }
-
-//    @Bean(name = "employeez")
-//    public DefaultWsdl11Definition defaultWsdl11Definition(XsdSchema countriesSchema) {
-//        DefaultWsdl11Definition wsdl11Definition = new DefaultWsdl11Definition();
-//        wsdl11Definition.setPortTypeName("EmployeesPort");
-//        wsdl11Definition.setLocationUri("/ws");
-//        wsdl11Definition.setTargetNamespace("http://www.kn.com/springsoap");
-//        wsdl11Definition.setSchema(countriesSchema);
-//        return wsdl11Definition;
-//    }
 
     @Bean
     public XsdSchema countriesSchema() {

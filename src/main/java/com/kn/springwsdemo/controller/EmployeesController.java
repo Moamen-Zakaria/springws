@@ -2,6 +2,7 @@ package com.kn.springwsdemo.controller;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.kn.springwsdemo.exception.SomeSOAPException;
+import com.kn.springwsdemo.repository.EmployeeRepository;
 import com.kn.springwsdemo.service.PrintService;
 import com.kn.springwsdemo.message.Department;
 import com.kn.springwsdemo.message.Employee;
@@ -21,6 +22,7 @@ import java.util.UUID;
 public class EmployeesController {
 
     private PrintService printService;
+    private EmployeeRepository employeeRepository;
 
     private static final String NAMESPACE_URI = "http://www.kn.com/springsoap";
 
@@ -29,15 +31,7 @@ public class EmployeesController {
     public GetEmployeeResponse getAllEmployees(@RequestPayload GetAllEmployeesRequest getAllEmployeesRequest) throws JsonProcessingException {
 
         GetEmployeeResponse getEmployeeResponse = GetEmployeeResponse.builder()
-                .listOfEmployees(Arrays.asList(new Employee(UUID.randomUUID().toString(),
-                        "ahmed",
-                        "mohamed",
-                        "ddd@ddd.com",
-                        new Department(5, "dddd")), new Employee(UUID.randomUUID().toString(),
-                        "Mohammed",
-                        "mohamed",
-                        "ddd@ddd.com",
-                        new Department(5, "dddd"))))
+                .listOfEmployees(employeeRepository.findAll())
                 .build();
 
         printService.printEmployeesNames(getEmployeeResponse);
