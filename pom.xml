@@ -30,12 +30,6 @@
         </dependency>
 
         <dependency>
-            <groupId>com.jayway.jsonpath</groupId>
-            <artifactId>json-path</artifactId>
-            <version>2.4.0</version>
-        </dependency>
-
-        <dependency>
             <groupId>com.github.wnameless.json</groupId>
             <artifactId>json-flattener</artifactId>
             <version>0.16.4</version>
@@ -58,8 +52,13 @@
         </dependency>
 
         <dependency>
-            <groupId>com.h2database</groupId>
-            <artifactId>h2</artifactId>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
             <scope>runtime</scope>
         </dependency>
 
@@ -81,37 +80,12 @@
             <scope>provided</scope>
         </dependency>
 
+        <dependency>
+            <groupId>org.flywaydb</groupId>
+            <artifactId>flyway-core</artifactId>
+        </dependency>
+
     </dependencies>
-
-    <!--    <dependencies>-->
-    <!--        &lt;!&ndash;        <dependency>&ndash;&gt;-->
-    <!--        &lt;!&ndash;            <groupId>org.projectlombok</groupId>&ndash;&gt;-->
-    <!--        &lt;!&ndash;            <artifactId>lombok</artifactId>&ndash;&gt;-->
-    <!--        &lt;!&ndash;            <version>1.18.24</version>&ndash;&gt;-->
-    <!--        &lt;!&ndash;            <scope>provided</scope>&ndash;&gt;-->
-    <!--        &lt;!&ndash;        </dependency>&ndash;&gt;-->
-    <!--        -->
-    <!--        <dependency>-->
-    <!--            <groupId>org.springframework.boot</groupId>-->
-    <!--            <artifactId>spring-boot-starter-web</artifactId>-->
-    <!--        </dependency>-->
-    <!--        <dependency>-->
-    <!--            <groupId>org.springframework.boot</groupId>-->
-    <!--            <artifactId>spring-boot-starter-web-services</artifactId>-->
-    <!--        </dependency>-->
-    <!--        &lt;!&ndash; tag::springws[] &ndash;&gt;-->
-    <!--        <dependency>-->
-    <!--            <groupId>wsdl4j</groupId>-->
-    <!--            <artifactId>wsdl4j</artifactId>-->
-    <!--        </dependency>-->
-    <!--        &lt;!&ndash; end::springws[] &ndash;&gt;-->
-
-    <!--        <dependency>-->
-    <!--            <groupId>org.springframework.boot</groupId>-->
-    <!--            <artifactId>spring-boot-starter-test</artifactId>-->
-    <!--            <scope>test</scope>-->
-    <!--        </dependency>-->
-    <!--    </dependencies>-->
 
     <build>
         <plugins>
@@ -120,6 +94,16 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <version>2.2.1.RELEASE</version>
             </plugin>
+            <!--            <plugin>-->
+            <!--                <groupId>org.flywaydb</groupId>-->
+            <!--                <artifactId>flyway-maven-plugin</artifactId>-->
+            <!--                <version>8.5.13</version>-->
+            <!--                <configuration>-->
+            <!--                    <configFiles>-->
+            <!--                        src/main/resources/flyway.conf-->
+            <!--                    </configFiles>-->
+            <!--                </configuration>-->
+            <!--            </plugin>-->
         </plugins>
     </build>
     <repositories>
