@@ -1,6 +1,15 @@
 spring:
+  cloud:
+    config:
+      name: ${spring.application.name}
+      profile: ${spring.profiles.active:default}
+      label: ${spring.application.name}
+  config:
+    import: "configserver:http://localhost:8888/"
+  application:
+    name: ws
   datasource:
-    url: jdbc:postgresql://localhost:5432/postgres?currentSchema=mydb
+    url: jdbc:postgresql://localhost:9999/postgres?currentSchema=mydb
     username: postgres
     password: pass
     driverClassName: org.postgresql.Driver

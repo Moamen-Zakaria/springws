@@ -15,6 +15,7 @@
     <description>spring-ws demo</description>
     <properties>
         <java.version>1.8</java.version>
+        <spring-cloud.version>2021.0.8</spring-cloud.version>
     </properties>
     <dependencies>
 
@@ -27,6 +28,11 @@
             <groupId>com.jayway.jsonpath</groupId>
             <artifactId>json-path</artifactId>
             <version>2.4.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-config</artifactId>
         </dependency>
 
         <dependency>
@@ -87,6 +93,18 @@
 
     </dependencies>
 
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>${spring-cloud.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
     <build>
         <plugins>
             <plugin>
@@ -94,16 +112,6 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <version>2.2.1.RELEASE</version>
             </plugin>
-            <!--            <plugin>-->
-            <!--                <groupId>org.flywaydb</groupId>-->
-            <!--                <artifactId>flyway-maven-plugin</artifactId>-->
-            <!--                <version>8.5.13</version>-->
-            <!--                <configuration>-->
-            <!--                    <configFiles>-->
-            <!--                        src/main/resources/flyway.conf-->
-            <!--                    </configFiles>-->
-            <!--                </configuration>-->
-            <!--            </plugin>-->
         </plugins>
     </build>
     <repositories>
