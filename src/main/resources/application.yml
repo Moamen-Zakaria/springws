@@ -4,8 +4,15 @@ spring:
       name: ${spring.application.name}
       profile: ${spring.profiles.active:default}
       label: ${spring.application.name}
+    consul:
+      host: localhost
+      port: 8500
+      discovery:
+        enabled: true
+        service-name: ws
+        instance-id: ${spring.cloud.consul.discovery.service-name}-1
   config:
-    import: "configserver:http://localhost:8888/"
+    import: "optional:configserver:http://localhost:8888/"
   application:
     name: ws
   datasource:
@@ -28,4 +35,8 @@ spring:
     fail-on-missing-locations: true
     locations: classpath:db/migration
     default-schema: mydb
+    schemas: mydb
+server:
+  port: 8081
+
 
