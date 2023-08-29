@@ -32,7 +32,7 @@ public class EmployeesController {
     public GetEmployeeResponse getAllEmployees(@RequestPayload GetAllEmployeesRequest getAllEmployeesRequest) throws JsonProcessingException {
 
         GetEmployeeResponse getEmployeeResponse = GetEmployeeResponse.builder()
-                .listOfEmployees(employeeRepository.findAll(SpecificationFactory.hasDepartmentName("Software")))
+                .listOfEmployees(employeeRepository.findAll(SpecificationFactory.hasDepartmentName(getAllEmployeesRequest.getDepartment())))
                 .build();
 
         printService.printEmployeesNames(getEmployeeResponse);

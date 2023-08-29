@@ -9,14 +9,12 @@ spring:
       port: 8500
       discovery:
         enabled: true
-        service-name: ws
+        service-name: ${spring.application.name}
         instance-id: ${spring.cloud.consul.discovery.service-name}-1
-  config:
-    import: "optional:configserver:http://localhost:8888/"
   application:
-    name: ws
+    name: MYSOAP
   datasource:
-    url: jdbc:postgresql://localhost:9999/postgres?currentSchema=mydb
+    url: jdbc:postgresql://localhost:5432/postgres?currentSchema=mydb
     username: postgres
     password: pass
     driverClassName: org.postgresql.Driver
@@ -37,7 +35,7 @@ spring:
     default-schema: mydb
     schemas: mydb
 server:
-  port: 8081
+  port: 8033
 
 kn:
   soap:
