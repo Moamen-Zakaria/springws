@@ -2,6 +2,7 @@ package com.kn.springwsdemo.config;
 
 import com.kn.springwsdemo.interceptors.GlobalEndpointInterceptor;
 import com.kn.springwsdemo.interceptors.SmartEndpointInterceptor;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
@@ -18,6 +19,7 @@ import org.springframework.xml.xsd.XsdSchema;
 import java.util.List;
 
 @Configuration
+@ConditionalOnProperty(prefix = "kn.soap", name = "enabled", havingValue = "true")
 public class WebServiceConfig extends WsConfigurerAdapter {
 
     private static final String NAMESPACE_URI = "http://www.kn.com/springsoap";
